@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.up.railway.app/railway.schema.json",
     "deploy": {
-        "startCommand": "sudo mkdir -p /usr/local/share/fonts/ && sudo cp font/AppleGothic.ttf /usr/local/share/fonts/ && sudo fc-cache -fv && streamlit run main.py --server.address 0.0.0.0 --server.port $PORT --server.fileWatcherType none --browser.gatherUsageStats false --client.showErrorDetails false --client.toolbarMode minimal"
+        "startCommand": "sudo mkdir -p /usr/local/share/fonts/ && sudo cp font/AppleGothic.ttf /usr/local/share/fonts/ && streamlit run main.py --server.address 0.0.0.0 --server.port $PORT --server.fileWatcherType none --browser.gatherUsageStats false --client.showErrorDetails false --client.toolbarMode minimal"
     }
 }
