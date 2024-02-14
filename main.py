@@ -27,12 +27,43 @@ def notion_callout(text, color="#ffcc00"):
     """
     st.markdown(callout_html, unsafe_allow_html=True)
 
+def intro():
+    html = """    
+    <div style='
+        display: flex;
+        align-items: top;
+        padding: 1.2rem;
+        margin: 1rem 0;
+        background-color: rgb(250, 243, 221);;
+        border-radius: 8px;
+        word-break: keep-all;
+        gap: 10px;
+        '>
+        <span style='font-size: 24px;'>🙇</span>
+        <div style='margin-left: 10px; font-size: 16px;'>
+            <b>[데이터 분석 방향성]</b> <br>
+            1. 대전광역시 교통 현황: <b>(1-1) 구별 분석 → (1-2) 지역별 분석</b>  <br>
+            2. <b>(2-1) 신호등과 사고다발지 연관성</b> 분석 <br>
+            3. 대전광역시 사고: <b>(3-1) 사고 유형, (3-2) 사고 원인</b> 분석 <br>
+            <br>
+            <b>[데이터 분석 배경]</b> <br>
+            1) 대전광역시는 대중 교통 수단의 접근성이 낮고, 개인 승용차 이용이 편리한 도시 구조를 지니고 있습니다. <br>
+            2) 최근 대전시는 2026년까지 교통사고 사망자수를 44명 이하로 감소시키겠다는 목표를 설정하였습니다. 이는 대전광역시가 교통사고 감소를 주 목적으로 삼고 있으며, 교통사고 감소에 대한 서비스 니즈가 있음을 짐작하게 합니다. <br>
+            3) 대전광역시의 교통사고 현황 및 부상 정도를 다각도로 살펴보고, 교통사고 해결에 기여할 수 있는 서비스 아이디어로 발전시켜보고 싶었습니다. 
+        </div>
+    </div>
+    """
+    st.markdown(html, unsafe_allow_html=True)
 
 # Example usage
 
 def main():
 
     st.title("데이터 시각화 미션")
+
+    intro()
+    
+    
 
     notion_callout("<b>첫번째로 대전광역시 전반의 교통 안전지수가 어떠한지 파악</b>하기 위해, 대전광역시 구별 ‘교통 안전 지수’를 분석해보았습니다.")
 
@@ -121,16 +152,20 @@ def main():
     st.write("\n\n")
     st.markdown("""
     - 활용 데이터: 2022년 교통사고 통계자료 ([대전의 통계](https://www.daejeon.go.kr/sta/StaStatisticsFldView.do?ntatcSeq=1442240988&menuSeq=180&colmn1Cont=&colmn2Cont=&boardId=normal_0009&pageIndex=1&searchCondition=TITLE&searchKeyword=%EA%B5%90%ED%86%B5%EC%82%AC%EA%B3%A0+%ED%86%B5%EA%B3%84#))
-    - 분석 이유: 사망자수, 부상자수 발생에 있어 원인 분석 및 영향력 파악, 사망률 비교 (?)
+    - 분석 이유: 사망자수, 부상자수 발생 원인 분석, 사망률 원인 분석
+        - 사망률: 사망자수/(사망자수+부상자수)
     - 시각화 툴: Heatmap
     - 결과 해석:
+        - 교통사고 사망과 부상의 가장 큰 원인은 **‘횡단중’**
+        - **횡단 과정서 안전책 필요**
     """)
 
 
     notion_callout("""
     <b>결론 및 인사이트</b> <br> 
     -대전광역시 교통 안전은 다소 좋지 않은 편입니다. <br>
-    -사고 유형의 주 원인으로 신호위반이 있으며, 교통 사고 방지를 위해 제작된 신호등은 제 역할을 수행하지 못하고 있습니다.""")
+    -사고 유형의 주 원인으로 <b>신호위반이 있으며</b>, 교통 사고 방지를 위해 제작된 신호등은 제 역할을 수행하지 못하고 있습니다. <br>
+    -사망과 부상은 ‘횡단’ 과정에서 가장 많이 발생합니다. 따라서 <b>횡단 과정서 안전책이 필요</b>합니다. """)
 
     st.write("\n")
 
