@@ -22,7 +22,7 @@ csv_file_path = 'pedstrians_utf8.csv'
 # Load CSV data
 data = pd.read_csv(csv_file_path)
 
-if st.checkbox("데이터 보기", False):
+if st.checkbox("사고 통계 데이터 보기", False):
     st.write(data)
 
 st.subheader("Polygon 지도위에 표시하기")
@@ -111,7 +111,9 @@ folium_static(m_dynamic)
 crosswalks_file_path = 'crosswalk_utf8.csv'
 crosswalk_data = pd.read_csv(crosswalks_file_path)
 
-if st.checkbox("데이터 보기", False):
+st.title("횡단보도 시각화")
+
+if st.checkbox("횡단보도 데이터 보기", False):
     st.write(crosswalk_data)
 
 # Initialize a map for the crosswalks (or use an existing map object)
@@ -130,7 +132,6 @@ for index, row in crosswalk_data.iterrows():
         icon=folium.Icon(color='blue', icon='info-sign')
     ).add_to(marker_cluster)
 
-st.title("신호등 시각화")
 
 # Display the crosswalk map in the Streamlit app
 folium_static(m_crosswalks)
