@@ -4,5 +4,8 @@ RUN pip install -r requirements.txt
 # streamlit run your_app.py --server.port $PORT
 ARG PORT
 RUN echo $PORT
-CMD ["streamlit", "run", "app.py", "--server.port", "$PORT"]
+ENV PORT ${PORT}
+EXPOSE ${PORT}
+
+CMD streamlit run app.py --server.port ${PORT}
 
