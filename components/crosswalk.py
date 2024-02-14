@@ -15,8 +15,6 @@ def get_data():
     return data
 
 def main(m):
-    st.subheader('대전 내의 횡단보도와 사고다발지의 연관성 분석')
-
     data = get_data()
     crosswalk_with_signal = data[data['보행자신호등유무'] == 'Y']
     crosswalk_without_signal = data[data['보행자신호등유무'] == 'N']

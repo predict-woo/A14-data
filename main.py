@@ -11,8 +11,8 @@ def notion_callout(text, color="#ffcc00"):
     callout_html = f"""
     <div style='
         display: flex;
-        align-items: top;
-        padding: 1.5rem;
+        align-items: center;
+        padding: 1.2rem;
         margin: 1rem 0;
         background-color: rgb(241, 241, 239);;
         border-radius: 8px;
@@ -34,11 +34,15 @@ def main():
 
     st.title("데이터 시각화 미션")
 
-    notion_callout("첫번째로 대전광역시 전반의 교통 안전지수가 어떠한지 파악하기 위해, 대전광역시 구별 ‘교통 안전 지수’를 분석해보았습니다.")
+    notion_callout("<b>첫번째로 대전광역시 전반의 교통 안전지수가 어떠한지 파악</b>하기 위해, 대전광역시 구별 ‘교통 안전 지수’를 분석해보았습니다.")
+
+    st.markdown("## 1-1. 대전광역시 구별 교통 안전 지수")
+
+    st.write("\n\n")
+    traffic_score()
+    st.write("\n\n")
 
     st.markdown("""
-    ## 1-1. 대전광역시 구별 교통 안전 지수
-
     - 활용 데이터: [생활안전정보](https://www.safemap.go.kr/asds/safe.do#tab1) (대전-교통-2022년 기준, excel 파일 자체제작)
     - 분석 이유: 대전광역시 구별 교통 안전 지수 파악
         - **교통안전지수란?** 교통사고 빅데이터를 기반으로 기초지자체의 교통안전수준을 평가한 지수로써 보행자, 교통약자, 사업용차량, 자전거 등 6개 영역 18개 세부지표로 구성되어 취약 영역 파악 및 교통정책에 활용 가능한 지수
@@ -48,14 +52,17 @@ def main():
         - **전반적으로 교통 안전 지수 낮은 상황**
     """)
 
-    st.write("\n\n")
-    traffic_score()
+
 
     notion_callout("분석 결과 <b>구체적인 지역별 사건 사고</b>가 어떤 추이일까 궁금하여 사고 다발 데이터를 바탕으로 위험도 지수, 사고건수, 사상자수, 사망자수, 중상자수, 경상자수, 부상신고자수를 파악해보았습니다.")
 
-    st.markdown("""
-    ## 1-2. 대전 지역별 사건 사고 분석
+    st.markdown("## 1-2. 대전 지역별 사건 사고 분석")
 
+    st.write("\n\n")
+    m = many_accidents()
+    st.write("\n\n")
+
+    st.markdown("""
     - 활용 데이터: 사고다발지역데이터
     - 분석 이유: 지역별 사고 정도 (위험도 지수, 사고건수, 사상자수, 사망자수, 중상자수, 경상자수, 부상신고자수) 파악
         - 지수 설명
@@ -73,14 +80,13 @@ def main():
             - 경상자수, 부상신고자수는 한자리수라 제외
     """)
 
-    st.write("\n\n")
-    m = many_accidents()
-
     notion_callout("<b>두번째로, 신호등이 설치된 곳에서도 사고가 많이 일어나고 있는 것일까요? 신호등이 본연의 역할을 수행하고 있는지</b> 알아보고 싶었습니다. ")
 
+    st.markdown("## 2-1. 대전 지역별 신호등과 사고다발지 연관성 분석")
+    st.write("\n\n")
+    crosswalk(m)
+    st.write("\n\n")
     st.markdown("""
-    ## 2-1. 대전 지역별 신호등과 사고다발지 연관성 분석
-
     - 활용 데이터: 사고다발지역데이터, 대전 전체 횡단보도 및 신호등 데이터
     - 분석 이유: 횡단보도와 사고다발지의 연관성을 분석하기 위해 횡단보도 유무와 사고다발지의 연관성 분석
     - 시각화 툴: Heatmap
@@ -88,14 +94,15 @@ def main():
         - **신호등이 있는 횡단보도임에도 많은 사고 발생**
     """)
 
-    st.write("\n\n")
-    crosswalk(m)
-
     notion_callout("<b>세번째로, 대전광역시 교통사고는 어떤 유형이 가장 빈번하게 발생</b>하는지 분석해보았습니다.")
 
-    st.markdown("""
-    ## 3-1. 사고 유형별 사망자수 비교
+    st.markdown("## 3-1. 사고 유형별 사망자수 비교")
 
+    st.write("\n\n")
+    reason_year_accident()
+    st.write("\n\n")
+
+    st.markdown("""
     - 활용 데이터: 2022년 교통사고 통계자료 ([대전의 통계](https://www.daejeon.go.kr/sta/StaStatisticsFldView.do?ntatcSeq=1442240988&menuSeq=180&colmn1Cont=&colmn2Cont=&boardId=normal_0009&pageIndex=1&searchCondition=TITLE&searchKeyword=%EA%B5%90%ED%86%B5%EC%82%AC%EA%B3%A0+%ED%86%B5%EA%B3%84#))
     - 분석 이유: 년도별 교통사고 주요 원인 분석
     - 시각화 툴: Line Chart
@@ -104,22 +111,21 @@ def main():
         - 유형: 안전운전불이행>**신호위반**>안전거리미확보>기타
     """)
 
-    st.write("\n\n")
-    reason_year_accident()
+
 
     notion_callout("<b>대전광역시 교통사고의 사고 원인</b>도 분석해보았습니다.")
 
+    st.markdown("## 3-2. 원인에 따른 사고 결과 비교")
+    st.write("\n\n")
+    reason_death_hurt()
+    st.write("\n\n")
     st.markdown("""
-    ## 3-2. 원인에 따른 사고 결과 비교
-
     - 활용 데이터: 2022년 교통사고 통계자료 ([대전의 통계](https://www.daejeon.go.kr/sta/StaStatisticsFldView.do?ntatcSeq=1442240988&menuSeq=180&colmn1Cont=&colmn2Cont=&boardId=normal_0009&pageIndex=1&searchCondition=TITLE&searchKeyword=%EA%B5%90%ED%86%B5%EC%82%AC%EA%B3%A0+%ED%86%B5%EA%B3%84#))
     - 분석 이유: 사망자수, 부상자수 발생에 있어 원인 분석 및 영향력 파악, 사망률 비교 (?)
     - 시각화 툴: Heatmap
     - 결과 해석:
     """)
 
-    st.write("\n\n")
-    reason_death_hurt()
 
     notion_callout("""
     <b>결론 및 인사이트</b> <br> 
@@ -131,7 +137,6 @@ def main():
     notion_callout("""
     <b>서비스 아이디어</b> <br>
     -보행자가 신호등이 있는 교차로에 접근했을 때, 빨간불이 초록불로 변하기까지의 잔여시간을 알려주는 웹앱 서비스를 제작해보고자 하였습니다.""")
-
 
 if __name__ == '__main__':
     main()

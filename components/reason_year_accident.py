@@ -9,7 +9,6 @@ def get_data():
     return data
 
 def main():
-    st.subheader('사고유형별 사망자수 비교')
     data = get_data()
     # add a column next to the index column that is all True
     data['show'] = True

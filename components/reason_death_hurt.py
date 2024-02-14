@@ -41,7 +41,6 @@ def main():
     ax_f.set_xlabel('')  # Remove x-axis label
 
     # Display the heatmaps
-    st.subheader("원인에 따른 사고 결과 비교")
 
     tab1, tab2 = st.tabs(["⚖️ 원인에 따른 사망자수와 부상자수 비교", "💀 원인에 따른 사망률 비교"])
 
