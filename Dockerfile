@@ -7,5 +7,5 @@ RUN echo $PORT
 ENV PORT ${PORT}
 EXPOSE ${PORT}
 
-CMD streamlit run app.py --server.port ${PORT}
+CMD streamlit run main.py --server.port ${PORT}
 
