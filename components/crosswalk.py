@@ -6,6 +6,7 @@ import json
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from folium.plugins import MarkerCluster, HeatMap
+
 from streamlit_folium import folium_static
 
 @st.cache_data
