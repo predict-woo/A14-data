@@ -23,7 +23,7 @@ def main(m):
     crosswalk = data
 
     # use radio button to select the type of crosswalk
-    crosswalk_type = st.radio("횡단보도 유형", ("전체", "신호등 있는 횡단보도", "신호등 없는 횡단보도"))
+    crosswalk_type = st.radio("신호등 유무", ("전체", "신호등 있는 횡단보도", "신호등 없는 횡단보도"))
     if crosswalk_type == "신호등 있는 횡단보도":
         crosswalk = crosswalk_with_signal
     elif crosswalk_type == "신호등 없는 횡단보도":
