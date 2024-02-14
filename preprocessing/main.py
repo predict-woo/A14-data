@@ -17,7 +17,7 @@ def parse_polygon_data(polygon_str):
 st.title("사고 통계 시각화")
 
 # Specify the path to your CSV file here
-csv_file_path = 'pedstrians_utf8.csv'
+csv_file_path = '../data/사고다발지.csv'
 
 # Load CSV data
 data = pd.read_csv(csv_file_path)
@@ -109,7 +109,7 @@ for index, row in data.iterrows():
 folium_static(m_dynamic)
 
 # Load the crosswalk data from a CSV file
-crosswalks_file_path = 'crosswalk_utf8.csv'
+crosswalks_file_path = '../data/횡단보도.csv'
 crosswalk_data = pd.read_csv(crosswalks_file_path)
 
 # filter crosswalk data with 보행자신호등유무 == 'Y'
@@ -157,7 +157,7 @@ column_heatmap = st.selectbox(
     "데이터 선택",
     ("위험도 지수", "사고건수", "사상자수", "사망자수", "중상자수", "경상자수", "부상신고자수")
 )
-
+도
 # create a new row in the dataframe of data named '위험도 지수'
 data['위험도 지수'] = data['사망자수'] * 5 + data['중상자수'] * 2 + data['경상자수'] * 1
 
@@ -209,21 +209,21 @@ m_circle_marker.add_child(heatmap)
 # 보행노인
 # 보행어린이
 # 스쿨존어린이
-# def color_accident(type):
-#     if type == '자전거':
-#         return 'red'
-#     elif type == '보행노인':
-#         return 'green'
-#     elif type == '보행어린이':
-#         return 'blue'
-#     elif type == '스쿨존어린이':
-#         return 'yellow'
-#     else:
-#         return 'black'
-#
-# for index, row in accident_data.iterrows():
-#     polygon_data = parse_polygon_data(row['사고다발지역폴리곤정보'])
-#     folium.Polygon(locations=polygon_data, color=color_accident(row["사고유형구분"]), weight=2.5, fill=True, fill_color=color_accident(row["사고유형구분"]), fill_opacity=0.5).add_to(m_circle_marker)
+def color_accident(type):
+    if type == '자전거':
+        return 'red'
+    elif type == '보행노인':
+        return 'green'
+    elif type == '보행어린이':
+        return 'blue'
+    elif type == '스쿨존어린이':
+        return 'yellow'
+    else:
+        return 'black'
+
+for index, row in accident_data.iterrows():
+    polygon_data = parse_polygon_data(row['사고다발지역폴리곤정보'])
+    folium.Polygon(locations=polygon_data, color=color_accident(row["사고유형구분"]), weight=2.5, fill=True, fill_color=color_accident(row["사고유형구분"]), fill_opacity=0.5).add_to(m_circle_marker)
 
 
 folium_static(m_circle_marker)
